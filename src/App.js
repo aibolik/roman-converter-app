@@ -5,10 +5,12 @@ import RadioButton from './components/RadioButton';
 import Input from './components/Input';
 
 import { validateValue } from './utils';
+import RomanConverter from './utils/roman-converter';
 
 function App() {
   const [isArabicToRoman, setIsArabicToRoman] = useState(true);
   const [fromValue, setFromValue] = useState('');
+  const [toValue, setToValue] = useState('');
 
   useEffect(() => {
     setFromValue('');
@@ -21,8 +23,18 @@ function App() {
   const onFromValueChange = (e) => {
     const v = e.target.value.toUpperCase();
 
+    if (!v) {
+      setFromValue('');
+      setToValue('');
+    }
+
     if (validateValue(v, isArabicToRoman)) {
       setFromValue(v);
+      if (isArabicToRoman) {
+        setToValue(RomanConverter.toRoman(parseInt(v, 10)));
+      } else {
+        setToValue(RomanConverter.fromRoman(v));
+      }
     }
   }
 
@@ -38,7 +50,7 @@ function App() {
 
       <div className="inputs-container">
         <Input label={isArabicToRoman ? "Arabic" : "Roman"} name="from" value={fromValue} onChange={onFromValueChange} />
-        <Input label={isArabicToRoman ? "Roman": "Arabic"} disabled />
+        <Input label={isArabicToRoman ? "Roman": "Arabic"} value={toValue} disabled />
       </div>
     </main>
   );
