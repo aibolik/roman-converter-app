@@ -1,0 +1,21 @@
+input[type=radio] {
+  opacity: 0;
+  position: absolute;
+}
+
+input[type=radio]:focus + label {
+  border: 3px solid #6D28D9;
+}
+
+.radio-button {
+  padding: 4px 6px;
+  font-weight: 500;
+
+  border: 3px solid transparent;
+  border-radius: 8px;
+  transition: background-color .3s;
+}
+
+.radio-button--checked {
+  background-color: rgba(255, 255, 255, .35);
+}
