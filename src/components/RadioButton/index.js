@@ -13,7 +13,7 @@ const RadioButton = ({
   return (
     <div className="radio-button-container">
       <input id={id} type="radio" name={name} value={value} onChange={onChange} />
-      <label for={id} className={`radio-button ${checked ? 'radio-button--checked' : ''}`}>
+      <label htmlFor={id} className={`radio-button ${checked ? 'radio-button--checked' : ''}`}>
         {label}
       </label>
     </div>

@@ -4,7 +4,7 @@ import './App.css';
 import RadioButton from './components/RadioButton';
 import Input from './components/Input';
 
-import { validateValue } from './utils';
+import validateValue from './utils/validate-value';
 import RomanConverter from './utils/roman-converter';
 
 function App() {
@@ -14,6 +14,7 @@ function App() {
 
   useEffect(() => {
     setFromValue('');
+    setToValue('');
   }, [isArabicToRoman]);
 
   const onChange = (e) => {
@@ -44,13 +45,38 @@ function App() {
         Roman Converter
       </h1>
       <div className="conversion-selector">
-        <RadioButton id="id-1" name="conversion" label="Arabic <-> Roman" value="toRoman" checked={isArabicToRoman} onChange={onChange} />
-        <RadioButton id="id-2" name="conversion" label="Roman <-> Arabic" value="fromRoman" checked={!isArabicToRoman} onChange={onChange} />
+        <RadioButton 
+          id="id-1" 
+          name="conversion"
+          label="Arabic <-> Roman"
+          value="toRoman"
+          checked={isArabicToRoman} 
+          onChange={onChange} 
+        />
+        <RadioButton 
+          id="id-2"
+          name="conversion"
+          label="Roman <-> Arabic"
+          value="fromRoman"
+          checked={!isArabicToRoman}
+          onChange={onChange} 
+        />
       </div>
 
       <div className="inputs-container">
-        <Input label={isArabicToRoman ? "Arabic" : "Roman"} name="from" value={fromValue} onChange={onFromValueChange} />
-        <Input label={isArabicToRoman ? "Roman": "Arabic"} value={toValue} disabled />
+        <Input
+          id="from"
+          label={isArabicToRoman ? "Arabic" : "Roman"}
+          name="from"
+          value={fromValue}
+          onChange={onFromValueChange} 
+        />
+        <Input
+          id="to"
+          label={isArabicToRoman ? "Roman": "Arabic"}
+          value={toValue}
+          disabled 
+        />
       </div>
     </main>
   );
